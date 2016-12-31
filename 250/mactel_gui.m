@@ -97,8 +97,6 @@ global folder_ab;
 start_process_250(files_ab, folder_ab);
 
 
-
-
 % --- Executes on button press in pushbutton3.
 function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
