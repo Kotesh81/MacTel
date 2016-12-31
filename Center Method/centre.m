@@ -5,7 +5,7 @@ files = cellstr(files);
 
 fname =fullfile(folder,files{1});   % Macula Centre is calculated for the first layer i.e. Superficial Retina. 
 
-im_ab = imread(fname);
+im_ab = imread(fname);  
 
 if size(im_ab,1) ~= 320 && size(im_ab,2) ~= 320
     im_ab = imresize((im_ab), [320 320]);
@@ -31,8 +31,8 @@ s2 = s(areas > 100);
 
 out = false(size(im_bw));
 
-for idx = 1 : numel(s2)   %// For each potential circle we have...
-    bb = floor(s2(idx).BoundingBox); %// Could be floating point, so floor it
+for idx = 1 : numel(s2)                 %// For each potential circle we have...
+    bb = floor(s2(idx).BoundingBox);     %// Could be floating point, so floor it
     %// Copy over pixels from original bw image to output
     out(bb(2):bb(2)+bb(4)-1, bb(1):bb(1)+bb(3)-1) = im_bw(bb(2):bb(2)+bb(4)-1, bb(1):bb(1)+bb(3)-1);
 end
@@ -54,8 +54,8 @@ for idx = 1 : numel(s2) %// For each circle we have...
 end
 
 
-[c,r] = imfindcircles(out2,[10,30]);
-%display detected circles
+[c,r] = imfindcircles(out2,[10,30]);         %display detected circles
+
 
 [centers, radii] = imfindcircles(out2,[10 30],'ObjectPolarity','dark', ...
     'Sensitivity',0.96);

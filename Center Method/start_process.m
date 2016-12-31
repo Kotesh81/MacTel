@@ -7,14 +7,14 @@ function start_process(files,folder)
 files = cellstr(files);
 
 for i = 1:length(files)
-fname =fullfile(folder,files{i});    
-im_ab = imread(fname);
+fname =fullfile(folder,files{i});  %   returns full path to the files
+im_ab = imread(fname);              
     
-if size(im_ab,1) ~= 320 && size(im_ab,2) ~= 320
-    im_ab = imresize((im_ab), [320 320]);
+if size(im_ab,1) ~= 320 && size(im_ab,2) ~= 320    
+    im_ab = imresize((im_ab), [320 320]);    
 end
 
-im_ab = rgb2gray(im_ab);  % 
+im_ab = rgb2gray(im_ab);  
 
 im_ab = imcrop(im_ab,[xcentre-125,ycentre-125,250,250]);  %Taking a patch of 250x250 around macula centre.
 
@@ -30,7 +30,7 @@ fprintf('%f\n', area(i));
 fprintf('\n');
 end
 
-z= xlsread('Report_Centre.xlsx');
+z= xlsread('Report_Centre.xlsx');     % Reading the excel file
 [m,n] = size(z);
 j = m + 1;  
 k = num2str(m + 1);
@@ -51,21 +51,8 @@ xlswrite('Report_Centre.xlsx',area(4),1,f);
 xlswrite('Report_Centre.xlsx',xcentre,1,g);
 xlswrite('Report_Centre.xlsx',ycentre,1,h);
 clear k;
-close;
+close;                        % Close the document and write to disk
  
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
+  
